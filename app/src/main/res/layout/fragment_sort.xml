@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <!--    app:tab_mode   Tab高度模式-->
+    <!--    app:tab_height Tab高度-->
+    <!--    app:tab_margin Tab间距-->
+    <q.rorbin.verticaltablayout.VerticalTabLayout
+        android:id="@+id/mTab_type"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="match_parent"
+        app:indicator_width="@dimen/dp_2"
+        app:tab_height="@dimen/dp_50"
+        app:tab_mode="scrollable" />
+
+    <com.example.shopkuang.utils.CustomViewPager
+        android:id="@+id/mVp_type"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_80"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/type_item_iv"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/type_item_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/type_item_iv"
+        android:layout_centerHorizontal="true"
+        android:text="居家"/>
+</RelativeLayout>

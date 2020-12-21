@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.shop.home.brand.BrandActivity">
+
+    <ImageView
+        android:id="@+id/iv_brand_pic"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_180"
+        android:scaleType="matrix"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_brand_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_90"
+        android:text="CK"
+        android:textColor="#FFFDFD"
+        android:textSize="@dimen/dp_20"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_brand_simple"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_100"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:text="大撒反对法国范德萨发给三个四个都是广泛大使馆伤感的故事大纲根深蒂固山豆根"
+        app:layout_constraintTop_toBottomOf="@+id/iv_brand_pic" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

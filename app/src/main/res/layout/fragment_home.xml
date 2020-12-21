@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--        <SearchView-->
+    <!--            android:id="@+id/search_view"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:background="#F4EBEB"-->
+    <!--            android:iconifiedByDefault="false"-->
+    <!--            android:inputType="textFilter"-->
+    <!--            android:queryHint="商品搜索，共239款好物" />-->
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="@dimen/dp_360"
+                android:layout_height="@dimen/dp_30"
+                android:layout_gravity="center"
+                android:background="@drawable/one_shop"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp_5">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_80"
+                    android:src="@mipmap/b1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商品搜索，共239款好物"
+                    android:textColor="#A1A1A1" />
+            </LinearLayout>
+
+            <com.youth.banner.Banner
+                android:id="@+id/mybanner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_180"
+                android:layout_marginTop="@dimen/dp_10" />
+
+            <LinearLayout
+                android:id="@+id/layout_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp_10"></LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_5"
+                android:background="#E3E3E3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/home_tv_brand_name"
+                    style="@style/Home_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:text="品牌制作商直供" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/pinpai_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/home_tv_new_name"
+                    style="@style/Home_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:text="周一周四·新品首发" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/newgoods_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_5"
+                android:background="#E3E3E3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Home_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:text="人气推荐" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/hotgoods_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Home_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:text="专题精选" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/specail_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
