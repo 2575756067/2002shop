@@ -207,6 +207,7 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
             initGoodDetail(result.getData().getInfo().getGoods_desc());
             //商品参数
             initParameter(result.getData().getAttribute());
+            //wdwdwdwdw
         }
     }
 
