@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopkuang.R;
 import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseAdapter;
-import com.example.shopkuang.bean.shop.pinpai.BrandBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandBean;
 
 import java.util.List;
 

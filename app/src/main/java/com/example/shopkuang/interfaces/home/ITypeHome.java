@@ -1,7 +1,7 @@
 package com.example.shopkuang.interfaces.home;
 
-import com.example.shopkuang.bean.shop.type.TypeDataBean;
-import com.example.shopkuang.bean.shop.type.TypeTabBean;
+import com.example.shopkuang.bean.bean.type.TypeDataBean;
+import com.example.shopkuang.bean.bean.type.TypeTabBean;
 import com.example.shopkuang.interfaces.Callback;
 import com.example.shopkuang.interfaces.IBaseModel;
 import com.example.shopkuang.interfaces.IBasePresenter;

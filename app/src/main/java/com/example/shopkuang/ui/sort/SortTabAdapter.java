@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.shopkuang.bean.shop.type.TypeTabBean;
+import com.example.shopkuang.bean.bean.type.TypeTabBean;
 
 import java.util.ArrayList;
 import java.util.List;

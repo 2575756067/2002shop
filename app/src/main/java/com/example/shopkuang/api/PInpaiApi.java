@@ -1,7 +1,7 @@
 package com.example.shopkuang.api;
 
-import com.example.shopkuang.bean.shop.pinpai.BrandlistBean;
-import com.example.shopkuang.bean.shop.pinpai.BrandlistRecyBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandlistBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandlistRecyBean;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;

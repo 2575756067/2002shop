@@ -4,14 +4,11 @@ package com.example.shopkuang.ui.sort;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
-import com.example.shopkuang.MainActivity;
 import com.example.shopkuang.R;
-import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseFragment;
-import com.example.shopkuang.bean.shop.type.TypeDataBean;
-import com.example.shopkuang.bean.shop.type.TypeTabBean;
+import com.example.shopkuang.bean.bean.type.TypeDataBean;
+import com.example.shopkuang.bean.bean.type.TypeTabBean;
 import com.example.shopkuang.interfaces.home.ITypeHome;
 import com.example.shopkuang.presenter.TypePresenter;
 import com.example.shopkuang.utils.CustomViewPager;
@@ -21,9 +18,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
-import q.rorbin.verticaltablayout.adapter.TabAdapter;
-import q.rorbin.verticaltablayout.widget.ITabView;
-import q.rorbin.verticaltablayout.widget.QTabView;
 
 public class SortFragment extends BaseFragment<ITypeHome.presenter> implements ITypeHome.View {
     @BindView(R.id.mTab_type)

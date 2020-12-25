@@ -246,12 +246,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <WebView
-                    android:id="@+id/webView_category"
+<!--                <WebView-->
+<!--                    android:id="@+id/webView_category"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    tools:ignore="WebViewLayout" />-->
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="WebViewLayout" />
+                    android:id="@+id/bigimgRecycle"
+                    app:layout_constraintTop_toTopOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!--商品常见问题区域-->
             <LinearLayout
@@ -355,7 +360,7 @@
             app:layout_constraintLeft_toRightOf="@id/fl_car" />
 
         <TextView
-            android:id="@+id/tv_category_addCar"
+            android:id="@+id/tv_addcar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/red"

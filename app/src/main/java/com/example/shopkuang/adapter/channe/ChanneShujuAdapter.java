@@ -2,14 +2,13 @@ package com.example.shopkuang.adapter.channe;
 
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.shopkuang.R;
 import com.example.shopkuang.base.BaseAdapter;
-import com.example.shopkuang.bean.shop.ChanneShujuBean;
+import com.example.shopkuang.bean.bean.ChanneShujuBean;
 
 import java.util.List;
 

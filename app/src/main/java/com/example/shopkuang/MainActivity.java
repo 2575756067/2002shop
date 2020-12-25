@@ -1,6 +1,8 @@
 package com.example.shopkuang;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.shopkuang.adapter.MainVpAdapter;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         MainVpAdapter adapter = new MainVpAdapter(getSupportFragmentManager(), fragments);
         vp.setAdapter(adapter);
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         //底部
@@ -110,6 +114,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+//        Intent intent = getIntent();
+//        if (intent.hasExtra("pos")){
+//            int pos = intent.getIntExtra("pos", 0);
+//            Log.e("TAG", "onCreate: "+pos);
+//            vp.setCurrentItem(pos);
+//        }
+
+        int pos = getIntent().getIntExtra("pos", 0);
+        vp.setCurrentItem(pos);
     }
 
     private void initFragment() {

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.example.shopkuang.R;
 import com.example.shopkuang.base.BaseAdapter;
-import com.example.shopkuang.bean.shop.type.TypeDataBean;
+import com.example.shopkuang.bean.bean.type.TypeDataBean;
 import com.example.shopkuang.utils.ImageLoader;
 
 import java.util.List;

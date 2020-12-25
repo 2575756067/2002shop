@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+
+    <ImageView
+        android:id="@+id/iv_pop_head"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:layout_margin="@dimen/dp_10"
+        android:src="@drawable/select_ok" />
+
+    <TextView
+        android:id="@+id/tv_jiage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_toRightOf="@id/iv_pop_head"
+        android:text="价格："
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_jiage"
+        android:layout_toRightOf="@id/tv_jiage"
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:id="@+id/select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_jiage"
+        android:layout_toRightOf="@id/iv_pop_head"
+        android:text="已选择："
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_price"
+        android:layout_toRightOf="@id/select"
+        android:textSize="@dimen/dp_16" />
+
+    <TextView
+        android:id="@+id/tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_pop_head"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:text="数量"
+        android:textSize="@dimen/dp_20" />
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_40"
+        android:layout_below="@id/tv_num"
+        android:layout_margin="@dimen/dp_10"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/detail_btn_jian"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape_shopcar_pop"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/detail_btn_shu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/shape_shopcar_pop"
+            android:gravity="center"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/detail_btn_jia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape_shopcar_pop"
+            android:text="+" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/detail_tv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/dp_10"
+        android:text="×"
+        android:textSize="@dimen/dp_20" />
+</RelativeLayout>

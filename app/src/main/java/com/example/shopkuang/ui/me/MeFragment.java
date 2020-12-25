@@ -1,11 +1,28 @@
 package com.example.shopkuang.ui.me;
 
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+
 import com.example.shopkuang.R;
 import com.example.shopkuang.base.BaseFragment;
 import com.example.shopkuang.interfaces.IBasePresenter;
+import com.example.shopkuang.ui.login.LoginActivity;
+
+import butterknife.BindView;
 
 public class MeFragment extends BaseFragment {
+    @BindView(R.id.iv_my_head)
+    ImageView ivMyHead;
+    @BindView(R.id.tv_my_name)
+    TextView tvMyName;
+    @BindView(R.id.iv_my_details)
+    ImageView ivMyDetails;
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_me;
@@ -18,11 +35,42 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        ivMyDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                startActivityForResult(intent, 100);
+            }
+        });
+        ivMyHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                startActivityForResult(intent, 100);
+            }
+        });
+        tvMyName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                startActivityForResult(intent, 100);
+            }
+        });
+
 
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == 100) {
+            String name = data.getStringExtra("name");
+            tvMyName.setText(name);
+        }
     }
 }

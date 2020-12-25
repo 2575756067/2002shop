@@ -2,20 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.yanzhenjie.recyclerview.swipe.SwipeMenuLayout
+        android:alpha="0"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+    </com.yanzhenjie.recyclerview.swipe.SwipeMenuLayout>
 
     <ImageView
         android:id="@+id/topic_rlv_item_iv"
         android:layout_width="match_parent"
-        android:scaleType="fitXY"
-        android:layout_height="@dimen/dp_250" />
+        android:layout_height="@dimen/dp_250"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/topic_rlv_item_tv_name"
-        android:layout_marginTop="@dimen/dp_10"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10" />
 
     <TextView
         android:id="@+id/topic_rlv_item_brif"
@@ -25,16 +32,16 @@
 
     <TextView
         android:id="@+id/topic_rlv_item_price"
-        android:layout_marginTop="@dimen/dp_10"
-        android:textSize="@dimen/dp_12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#D50000" />
+        android:layout_marginTop="@dimen/dp_10"
+        android:textColor="#D50000"
+        android:textSize="@dimen/dp_12" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_10"
         android:layout_height="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@color/huise"></View>
 
 </LinearLayout>

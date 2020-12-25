@@ -1,6 +1,7 @@
 package com.example.shopkuang.model;
 
 import com.example.shopkuang.base.BaseModel;
+import com.example.shopkuang.bean.bean.shop.ShoppingCarBean;
 import com.example.shopkuang.interfaces.Callback;
 import com.example.shopkuang.interfaces.home.IBuyhome;
 import com.example.shopkuang.net.CommonSubscriber;
@@ -29,15 +30,30 @@ public class BuyModel extends BaseModel implements IBuyhome.Model {
     @Override
     public void getCategoryBottomInfo(String id, Callback callback) {
         addDisposiable(HttpManager
-        .getInstance()
-        .getApibuyDetails()
-        .getCategoryBottomInfo(id)
-        .compose(RxUtils.rxScheduler())
-        .subscribeWith(new CommonSubscriber<BuyDetailsBottomInfoBean>(callback) {
-            @Override
-            public void onNext(BuyDetailsBottomInfoBean buyDetailsBottomInfoBean) {
-                callback.success(buyDetailsBottomInfoBean);
-            }
-        }));
+                .getInstance()
+                .getApibuyDetails()
+                .getCategoryBottomInfo(id)
+                .compose(RxUtils.rxScheduler())
+                .subscribeWith(new CommonSubscriber<BuyDetailsBottomInfoBean>(callback) {
+                    @Override
+                    public void onNext(BuyDetailsBottomInfoBean buyDetailsBottomInfoBean) {
+                        callback.success(buyDetailsBottomInfoBean);
+                    }
+                }));
+    }
+
+    @Override
+    public void getShoppingCallback(Callback callback) {
+        addDisposiable(HttpManager
+                .getInstance()
+                .getApibuyDetails()
+                .getShoppingCar()
+                .compose(RxUtils.rxScheduler())
+                .subscribeWith(new CommonSubscriber<ShoppingCarBean>(callback) {
+                    @Override
+                    public void onNext(ShoppingCarBean shoppingCarBean) {
+                        callback.success(shoppingCarBean);
+                    }
+                }));
     }
 }

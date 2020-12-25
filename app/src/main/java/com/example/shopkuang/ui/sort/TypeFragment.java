@@ -2,7 +2,6 @@ package com.example.shopkuang.ui.sort;
 
 import android.content.Intent;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,14 +11,13 @@ import com.example.shopkuang.R;
 import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseAdapter;
 import com.example.shopkuang.base.BaseFragment;
-import com.example.shopkuang.bean.shop.type.TypeDataBean;
-import com.example.shopkuang.bean.shop.type.TypeTabBean;
+import com.example.shopkuang.bean.bean.type.TypeDataBean;
+import com.example.shopkuang.bean.bean.type.TypeTabBean;
 import com.example.shopkuang.interfaces.home.ITypeHome;
 import com.example.shopkuang.presenter.TypePresenter;
 import com.example.shopkuang.utils.ImageLoader;
 import com.example.shopkuang.utils.TxtUtils;
 
-import java.security.interfaces.RSAKey;
 import java.util.ArrayList;
 import java.util.List;
 

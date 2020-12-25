@@ -1,6 +1,7 @@
 package com.example.shopkuang.presenter;
 
 import com.example.shopkuang.base.BasePresenter;
+import com.example.shopkuang.bean.bean.shop.ShoppingCarBean;
 import com.example.shopkuang.interfaces.Callback;
 import com.example.shopkuang.interfaces.home.IBuyhome;
 import com.example.shopkuang.model.BuyModel;
@@ -36,4 +37,15 @@ public class IBuyPresenter extends BasePresenter<IBuyhome.View> implements IBuyh
             }
         });
     }
+
+    @Override
+    public void getShoppingCar() {
+        model.getShoppingCallback(new Callback() {
+            @Override
+            public void success(Object o) {
+                mView.getShopCarReturn((ShoppingCarBean) o);
+            }
+        });
+    }
+
 }

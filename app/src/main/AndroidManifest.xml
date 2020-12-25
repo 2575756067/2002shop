@@ -30,8 +30,12 @@
         <activity android:name=".ui.brand.BrandListActivity" />
         <activity android:name=".ui.home.NewsFirstActivity" />
         <activity android:name=".ui.Details.ShopDetailsActivity" />
-        <activity android:name=".ui.topic.TopicDetailsActivity"/>
-        <activity android:name=".ui.sort.SortActivity"/>
+        <activity android:name=".ui.topic.TopicDetailsActivity" />
+        <activity android:name=".ui.sort.SortActivity" />
+        <activity android:name=".ui.Details.BigImageActivity" />
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.login.RegisterActivity" />
+        <activity android:name=".shoppingcar.PayMentActivity"/>
     </application>
 
 </manifest>

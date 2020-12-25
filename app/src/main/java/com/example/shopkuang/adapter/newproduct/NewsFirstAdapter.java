@@ -1,14 +1,13 @@
 package com.example.shopkuang.adapter.newproduct;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.shopkuang.R;
 import com.example.shopkuang.base.BaseAdapter;
-import com.example.shopkuang.bean.shop.NewsShujuBean;
+import com.example.shopkuang.bean.bean.NewsShujuBean;
 
 import java.util.List;
 

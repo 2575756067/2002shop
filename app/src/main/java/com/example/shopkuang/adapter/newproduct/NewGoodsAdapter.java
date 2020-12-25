@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.shopkuang.R;
 import com.example.shopkuang.base.BaseAdapter;
-import com.example.shopkuang.bean.shop.HomeBean;
+import com.example.shopkuang.bean.bean.HomeBean;
 
 import java.util.List;
 

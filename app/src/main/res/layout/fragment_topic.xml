@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/topic_scroll"
         android:layout_width="match_parent"
@@ -15,8 +16,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
                 android:id="@+id/topic_recycle"
+                android:background="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

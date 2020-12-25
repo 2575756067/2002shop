@@ -18,4 +18,21 @@
     <string name="title_car_lookall">查看全部</string>
 
     <string name="tips_error_goodid">错误的商品id</string>
+
+    <!-- me - login -->
+    <string name="hint_login_username">账号</string>
+    <string name="hint_login_pw">密码</string>
+    <string name="tips_login">请输入正确的用户名和密码</string>
+    <string name="tips_ok_login">已经登录</string>
+
+    <!--me regist-->
+    <string name="hint_regist_username">用户名</string>
+    <string name="hint_regist_pw">确认密码</string>
+    <string name="hint_regist_verification">验证码</string>
+    <string name="tips_regist">请输入正确的用户名和密码和确认密码</string>
+    <string name="tips_regist_pw_pw2">密码和确认密码必须一致</string>
+    <string name="tips_regist_pw_6">密码必须大于6位</string>
+    <string name="tips_regist_ver">正确填写验证码</string>
+    <string name="tips_regist_">用户已经被注册</string>
+
 </resources>

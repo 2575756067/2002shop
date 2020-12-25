@@ -5,8 +5,11 @@ import android.util.Log;
 
 import com.example.shopkuang.api.ApiService;
 import com.example.shopkuang.api.BuyDetailApi;
+import com.example.shopkuang.api.LoginApi;
 import com.example.shopkuang.api.PInpaiApi;
 import com.example.shopkuang.api.TypeApi;
+import com.example.shopkuang.shoppingcar.ICarApi;
+import com.example.shopkuang.utils.SpUtils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -33,8 +36,6 @@ public class HttpManager {
         }
         return instance;
     }
-
-    private ApiService apiService;
 
 
     private Retrofit getRetrofit(String url) {
@@ -77,6 +78,9 @@ public class HttpManager {
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request().newBuilder()
                     .addHeader("Authorization", "APPCODE 964e16aa1ae944e9828e87b8b9fbd30a")
+                    .addHeader("X-Nideshop-Token", SpUtils.getInstance().getString("token"))
+                    //注册
+                    .addHeader("Client-Type", SpUtils.getInstance().getString("token"))
                     .build();
             return chain.proceed(request);
         }
@@ -87,6 +91,21 @@ public class HttpManager {
      *
      * @return
      */
+    private ApiService apiService;
+    private PInpaiApi apipinpai;
+    private BuyDetailApi apibuyDetails;
+    private TypeApi typeApi;
+    private LoginApi loginApi;
+    private ICarApi iCarApi;
+
+
+    public ICarApi getiCarApi() {
+        if (iCarApi == null) {
+            iCarApi = getRetrofit(ICarApi.BASE_URL).create(ICarApi.class);
+        }
+        return iCarApi;
+    }
+
     public ApiService getService() {
         if (apiService == null) {
             apiService = getRetrofit(ApiService.BASE_URL).create(ApiService.class);
@@ -94,16 +113,12 @@ public class HttpManager {
         return apiService;
     }
 
-    private PInpaiApi apipinpai;
-
     public PInpaiApi getPinpaiApi() {
         if (apipinpai == null) {
             apipinpai = getRetrofit(PInpaiApi.BASE_URL).create(PInpaiApi.class);
         }
         return apipinpai;
     }
-
-    private BuyDetailApi apibuyDetails;
 
     public BuyDetailApi getApibuyDetails() {
         if (apibuyDetails == null) {
@@ -113,13 +128,19 @@ public class HttpManager {
         return apibuyDetails;
     }
 
-    private TypeApi typeApi;
-
     public TypeApi getTypeApi() {
         if (typeApi == null) {
             typeApi = getRetrofit(TypeApi.BASE_URL).create(TypeApi.class);
         }
         return typeApi;
+    }
+
+    public LoginApi getLoginApi() {
+        if (loginApi == null) {
+            loginApi = getRetrofit(loginApi.BASE_URL).create(LoginApi.class);
+        }
+
+        return loginApi;
     }
 
 }

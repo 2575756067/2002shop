@@ -17,23 +17,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shopkuang.R;
-import com.example.shopkuang.adapter.renqituijian.HotGoodsAdapter;
-import com.example.shopkuang.adapter.LivingAdapter;
+import com.example.shopkuang.adapter.hotgoods.HotGoodsAdapter;
+import com.example.shopkuang.adapter.type.LivingAdapter;
 import com.example.shopkuang.adapter.newproduct.NewGoodsAdapter;
-import com.example.shopkuang.adapter.pinpai.PinPaiAdapter;
+import com.example.shopkuang.adapter.brand.BrandAdapter;
 import com.example.shopkuang.adapter.topic.TopicAdapter;
 import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseAdapter;
 import com.example.shopkuang.base.BaseFragment;
-import com.example.shopkuang.bean.shop.NewsShujuBean;
-import com.example.shopkuang.bean.shop.TopicBean;
-import com.example.shopkuang.bean.shop.pinpai.BrandBean;
-import com.example.shopkuang.bean.shop.ChanneBean;
-import com.example.shopkuang.bean.shop.ChanneShujuBean;
-import com.example.shopkuang.bean.shop.HomeBean;
-import com.example.shopkuang.bean.shop.NewsBean;
-import com.example.shopkuang.bean.shop.pinpai.BrandlistBean;
-import com.example.shopkuang.bean.shop.pinpai.BrandlistRecyBean;
+import com.example.shopkuang.bean.bean.NewsShujuBean;
+import com.example.shopkuang.bean.bean.TopicBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandBean;
+import com.example.shopkuang.bean.bean.ChanneBean;
+import com.example.shopkuang.bean.bean.ChanneShujuBean;
+import com.example.shopkuang.bean.bean.HomeBean;
+import com.example.shopkuang.bean.bean.NewsBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandlistBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandlistRecyBean;
 import com.example.shopkuang.interfaces.home.IHome;
 import com.example.shopkuang.presenter.Presenter;
 import com.example.shopkuang.ui.ChaneActivity.ChaneActivity;
@@ -57,7 +57,7 @@ public class HomeFragment extends BaseFragment<IHome.Presenter> implements IHome
     private RecyclerView specail_recycle;
     private LinearLayout layoutTab;
     private ArrayList<HomeBean.DataBean.BrandListBean> pinpailist;
-    private PinPaiAdapter pinpaiadapter;
+    private BrandAdapter pinpaiadapter;
     private ArrayList<HomeBean.DataBean.NewGoodsListBean> newGoodslist;
     private NewGoodsAdapter newGoodsAdapter;
     private ArrayList<HomeBean.DataBean.HotGoodsListBean> hotgoodslist;
@@ -103,7 +103,7 @@ public class HomeFragment extends BaseFragment<IHome.Presenter> implements IHome
         pinpailist = new ArrayList<>();
         pinpairecycle.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         pinpairecycle.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL));
-        pinpaiadapter = new PinPaiAdapter(getActivity(), pinpailist);
+        pinpaiadapter = new BrandAdapter(getActivity(), pinpailist);
         pinpairecycle.setAdapter(pinpaiadapter);
 
         //点击条目进入详情页面

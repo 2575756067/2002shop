@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.shopkuang.interfaces.IBasePresenter;
 import com.example.shopkuang.interfaces.IBaseView;
+import com.example.shopkuang.ui.login.LoginActivity;
+import com.example.shopkuang.utils.ActivityManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -67,7 +69,12 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment im
     public void showToast(String tips) {
 
     }
-
+    /**
+     * 跳转登录
+     */
+    protected void gotoLogin(){
+        ActivityManager.startFragmentForResult(this,100, LoginActivity.class);
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

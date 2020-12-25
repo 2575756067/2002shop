@@ -1,5 +1,6 @@
 package com.example.shopkuang.interfaces.home;
 
+import com.example.shopkuang.bean.bean.shop.ShoppingCarBean;
 import com.example.shopkuang.interfaces.Callback;
 import com.example.shopkuang.interfaces.IBaseModel;
 import com.example.shopkuang.interfaces.IBasePresenter;
@@ -11,7 +12,11 @@ public interface IBuyhome {
 
     interface View extends IBaseView {
         void getBuyDetails(BuyDetailsBean buyDetailsBean);
+
         void getCategoryBottomInfoReturn(BuyDetailsBottomInfoBean result);
+
+        //购物车列表
+        void getShopCarReturn(ShoppingCarBean result);
 
     }
 
@@ -20,12 +25,16 @@ public interface IBuyhome {
 
         void getCategoryBottomInfo(String id);
 
+        void getShoppingCar();
+
     }
 
     interface Model extends IBaseModel {
         void getBuyDetailsCallback(int id, Callback callback);
 
-        void getCategoryBottomInfo(String id,Callback callback);
+        void getCategoryBottomInfo(String id, Callback callback);
+
+        void getShoppingCallback(Callback callback);
 
     }
 }

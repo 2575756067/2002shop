@@ -3,6 +3,7 @@ package com.example.shopkuang.ui.topic;
 
 import android.content.Intent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
@@ -10,24 +11,29 @@ import android.widget.TextView;
 
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopkuang.R;
 import com.example.shopkuang.adapter.topic.TopicFragmentAdapter;
 import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseAdapter;
 import com.example.shopkuang.base.BaseFragment;
-import com.example.shopkuang.bean.shop.ChanneBean;
-import com.example.shopkuang.bean.shop.ChanneShujuBean;
-import com.example.shopkuang.bean.shop.HomeBean;
-import com.example.shopkuang.bean.shop.NewsBean;
-import com.example.shopkuang.bean.shop.NewsShujuBean;
-import com.example.shopkuang.bean.shop.TopicBean;
-import com.example.shopkuang.bean.shop.pinpai.BrandBean;
-import com.example.shopkuang.bean.shop.pinpai.BrandlistBean;
-import com.example.shopkuang.bean.shop.pinpai.BrandlistRecyBean;
+import com.example.shopkuang.bean.bean.ChanneBean;
+import com.example.shopkuang.bean.bean.ChanneShujuBean;
+import com.example.shopkuang.bean.bean.HomeBean;
+import com.example.shopkuang.bean.bean.NewsBean;
+import com.example.shopkuang.bean.bean.NewsShujuBean;
+import com.example.shopkuang.bean.bean.TopicBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandlistBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandlistRecyBean;
 import com.example.shopkuang.interfaces.home.IHome;
 import com.example.shopkuang.presenter.Presenter;
+import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
+import com.yanzhenjie.recyclerview.swipe.SwipeMenuBridge;
+import com.yanzhenjie.recyclerview.swipe.SwipeMenuCreator;
+import com.yanzhenjie.recyclerview.swipe.SwipeMenuItem;
+import com.yanzhenjie.recyclerview.swipe.SwipeMenuItemClickListener;
+import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +45,7 @@ public class TopicFragment extends BaseFragment<IHome.Presenter> implements IHom
 
 
     @BindView(R.id.topic_recycle)
-    RecyclerView topicRecycle;
+    SwipeMenuRecyclerView topicRecycle;
 
     @BindView(R.id.topic_scroll)
     NestedScrollView topicScroll;
@@ -73,21 +79,54 @@ public class TopicFragment extends BaseFragment<IHome.Presenter> implements IHom
     protected void initView() {
         topicRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
         list = new ArrayList<>();
-        adapter = new TopicFragmentAdapter(getActivity(), list);
-        topicRecycle.setAdapter(adapter);
 
+        // 设置菜单创建器
+        topicRecycle.setSwipeMenuCreator(swipeMenuCreator);
+        // 设置菜单Item点击监听
+        topicRecycle.setSwipeMenuItemClickListener(mMenuItemClickListener);
+        adapter = new TopicFragmentAdapter(getActivity(), list);
+
+        topicRecycle.setAdapter(adapter);
 
         //跳转到专题详情
         adapter.addListClick(new BaseAdapter.IListClick() {
             @Override
             public void itemClick(int pos) {
                 int id = list.get(pos).getId();
-                MyApp.getMap().put("topicid",id);
-                startActivity(new Intent(getActivity(),TopicDetailsActivity.class));
+                MyApp.getMap().put("topicid", id);
+                startActivity(new Intent(getActivity(), TopicDetailsActivity.class));
             }
         });
 
     }
+
+    // 3. 创建侧滑菜单
+    private SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
+        @Override
+        public void onCreateMenu(SwipeMenu swipeLeftMenu, SwipeMenu swipeRightMenu, int viewType) {
+
+            SwipeMenuItem deleteItem = new SwipeMenuItem(getActivity())
+                    .setImage(R.drawable.icon_delete)
+//                    .setTextColor(Color.WHITE) // 文字颜色。
+//                    .setTextSize(16) // 文字大小。
+                    .setWidth(144) // 宽
+                    .setHeight(ViewGroup.LayoutParams.MATCH_PARENT); //高（MATCH_PARENT意为Item多高侧滑菜单多高 （推荐使用））
+            swipeRightMenu.addMenuItem(deleteItem);// 添加一个按钮到右侧侧菜单。
+
+        }
+    };
+    // 4. 创建侧滑菜单的点击事件
+    private SwipeMenuItemClickListener mMenuItemClickListener = new SwipeMenuItemClickListener() {
+        @Override
+        public void onItemClick(SwipeMenuBridge menuBridge) {
+            // 任何操作必须先关闭菜单，否则可能出现Item菜单打开状态错乱。
+            menuBridge.closeMenu();
+            //在menuBridge中我们可以得到侧滑的这一项item的position (menuBridge.getAdapterPosition())
+            int adapterPosition = menuBridge.getAdapterPosition();
+            list.remove(adapterPosition);
+            topicRecycle.setAdapter(adapter);
+        }
+    };
 
     @Override
     protected void initData() {

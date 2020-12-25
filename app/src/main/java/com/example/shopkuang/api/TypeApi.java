@@ -1,7 +1,7 @@
 package com.example.shopkuang.api;
 
-import com.example.shopkuang.bean.shop.type.TypeDataBean;
-import com.example.shopkuang.bean.shop.type.TypeTabBean;
+import com.example.shopkuang.bean.bean.type.TypeDataBean;
+import com.example.shopkuang.bean.bean.type.TypeTabBean;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;

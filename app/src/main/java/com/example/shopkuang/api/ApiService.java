@@ -1,13 +1,13 @@
 package com.example.shopkuang.api;
 
 
-import com.example.shopkuang.bean.shop.TopicBean;
-import com.example.shopkuang.bean.shop.pinpai.BrandBean;
-import com.example.shopkuang.bean.shop.ChanneBean;
-import com.example.shopkuang.bean.shop.ChanneShujuBean;
-import com.example.shopkuang.bean.shop.HomeBean;
-import com.example.shopkuang.bean.shop.NewsBean;
-import com.example.shopkuang.bean.shop.NewsShujuBean;
+import com.example.shopkuang.bean.bean.TopicBean;
+import com.example.shopkuang.bean.bean.pinpai.BrandBean;
+import com.example.shopkuang.bean.bean.ChanneBean;
+import com.example.shopkuang.bean.bean.ChanneShujuBean;
+import com.example.shopkuang.bean.bean.HomeBean;
+import com.example.shopkuang.bean.bean.NewsBean;
+import com.example.shopkuang.bean.bean.NewsShujuBean;
 
 import java.util.HashMap;
 

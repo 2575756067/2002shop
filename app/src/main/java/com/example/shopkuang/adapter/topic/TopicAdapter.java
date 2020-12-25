@@ -1,15 +1,12 @@
 package com.example.shopkuang.adapter.topic;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.shopkuang.R;
 import com.example.shopkuang.base.BaseAdapter;
-import com.example.shopkuang.bean.shop.HomeBean;
-import com.example.shopkuang.bean.shop.TopicBean;
+import com.example.shopkuang.bean.bean.HomeBean;
 import com.example.shopkuang.utils.ImageLoader;
 import com.example.shopkuang.utils.TxtUtils;
 
