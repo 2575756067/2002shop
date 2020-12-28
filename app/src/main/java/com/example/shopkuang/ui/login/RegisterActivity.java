@@ -107,11 +107,8 @@ public class RegisterActivity extends BaseActivity<ILoginHome.Presenter> impleme
 //        token = result.getData().getToken().toString();
         int errno = result.getErrno();
         if (errno == 0) {
-            //todo  注册成功
-            Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            Toast.makeText(this, "用户名已注册 请重新注册", Toast.LENGTH_SHORT).show();
             //回传值到登录界面
             String name = etAdmin.getText().toString();
             String pw = etPwd.getText().toString();

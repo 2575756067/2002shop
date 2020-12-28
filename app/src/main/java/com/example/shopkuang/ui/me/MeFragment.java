@@ -4,6 +4,7 @@ package com.example.shopkuang.ui.me;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.example.shopkuang.R;
 import com.example.shopkuang.base.BaseFragment;
 import com.example.shopkuang.interfaces.IBasePresenter;
+import com.example.shopkuang.ui.Details.favorites.FavoritesActivity;
 import com.example.shopkuang.ui.login.LoginActivity;
 
 import butterknife.BindView;
@@ -22,6 +24,9 @@ public class MeFragment extends BaseFragment {
     TextView tvMyName;
     @BindView(R.id.iv_my_details)
     ImageView ivMyDetails;
+    @BindView(R.id.ll_my_shoucang)
+    LinearLayout ll_favorites;
+
 
     @Override
     protected int getLayout() {
@@ -57,7 +62,13 @@ public class MeFragment extends BaseFragment {
             }
         });
 
-
+        //todo  跳转到收藏页面
+        ll_favorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), FavoritesActivity.class));
+            }
+        });
     }
 
     @Override

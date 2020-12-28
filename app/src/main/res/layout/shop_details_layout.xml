@@ -345,7 +345,6 @@
                 android:layout_marginBottom="@dimen/dp_10"
                 android:background="@drawable/shape_car_number"
                 android:gravity="center"
-                android:text="11"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_8" />
         </FrameLayout>

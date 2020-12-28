@@ -1,9 +1,11 @@
 package com.example.shopkuang.shoppingcar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopkuang.R;
 import com.example.shopkuang.base.BaseActivity;
 import com.example.shopkuang.interfaces.IBasePresenter;
+import com.example.shopkuang.ui.shopaddress.ShopAddressesActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,7 +77,13 @@ public class PayMentActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        ImageView name_details = findViewById(R.id.tv_name_details);
+        name_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PayMentActivity.this, ShopAddressesActivity.class));
+            }
+        });
     }
 
     @Override

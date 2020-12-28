@@ -3,10 +3,12 @@ package com.example.shopkuang.net;
 import android.util.Log;
 
 
+import com.example.shopkuang.api.AddressApi;
 import com.example.shopkuang.api.ApiService;
 import com.example.shopkuang.api.BuyDetailApi;
 import com.example.shopkuang.api.LoginApi;
 import com.example.shopkuang.api.PInpaiApi;
+import com.example.shopkuang.api.TopicApi;
 import com.example.shopkuang.api.TypeApi;
 import com.example.shopkuang.shoppingcar.ICarApi;
 import com.example.shopkuang.utils.SpUtils;
@@ -97,7 +99,23 @@ public class HttpManager {
     private TypeApi typeApi;
     private LoginApi loginApi;
     private ICarApi iCarApi;
+    private AddressApi addressApi;
+    private TopicApi topicApi;
 
+    public TopicApi getTopicApi() {
+        if (topicApi == null) {
+            topicApi = getRetrofit(TopicApi.BASE_URL).create(TopicApi.class);
+        }
+        return topicApi;
+    }
+
+
+    public AddressApi getAddressApi() {
+        if (addressApi == null) {
+            addressApi = getRetrofit(AddressApi.BASE_URL).create(AddressApi.class);
+        }
+        return addressApi;
+    }
 
     public ICarApi getiCarApi() {
         if (iCarApi == null) {

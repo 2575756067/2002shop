@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.yanzhenjie.recyclerview.swipe.SwipeMenuLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        android:alpha="0"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/swipe"
+        >
+
+    </com.yanzhenjie.recyclerview.swipe.SwipeMenuLayout>
+    <ImageView
+        android:id="@+id/iv_favorites_pic"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_80"
+        app:layout_constraintTop_toBottomOf="@+id/swipe"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <TextView
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_favorites_name"
+        app:layout_constraintTop_toBottomOf="@+id/swipe"
+        app:layout_constraintLeft_toRightOf="@+id/iv_favorites_pic"
+        android:text="拼接"
+        />
+    <TextView
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_favorites_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_favorites_name"
+        app:layout_constraintLeft_toRightOf="@+id/iv_favorites_pic"
+        android:text="三角"
+        />
+    <TextView
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_favorites_price"
+        app:layout_constraintTop_toBottomOf="@id/tv_favorites_title"
+        app:layout_constraintLeft_toRightOf="@+id/iv_favorites_pic"
+        android:text="100"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

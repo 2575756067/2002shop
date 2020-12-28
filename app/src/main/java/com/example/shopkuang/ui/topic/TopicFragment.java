@@ -22,7 +22,7 @@ import com.example.shopkuang.bean.bean.ChanneShujuBean;
 import com.example.shopkuang.bean.bean.HomeBean;
 import com.example.shopkuang.bean.bean.NewsBean;
 import com.example.shopkuang.bean.bean.NewsShujuBean;
-import com.example.shopkuang.bean.bean.TopicBean;
+import com.example.shopkuang.bean.bean.topic.TopicBean;
 import com.example.shopkuang.bean.bean.pinpai.BrandBean;
 import com.example.shopkuang.bean.bean.pinpai.BrandlistBean;
 import com.example.shopkuang.bean.bean.pinpai.BrandlistRecyBean;
@@ -124,7 +124,8 @@ public class TopicFragment extends BaseFragment<IHome.Presenter> implements IHom
             //在menuBridge中我们可以得到侧滑的这一项item的position (menuBridge.getAdapterPosition())
             int adapterPosition = menuBridge.getAdapterPosition();
             list.remove(adapterPosition);
-            topicRecycle.setAdapter(adapter);
+//            topicRecycle.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
     };
 
@@ -180,10 +181,10 @@ public class TopicFragment extends BaseFragment<IHome.Presenter> implements IHom
         List<TopicBean.DataBeanX.DataBean> data = topicBean.getData().getData();
         list.addAll(data);
         adapter.notifyDataSetChanged();
-
-        //隐藏加载中
-        ivSpecialAll.setVisibility(View.GONE);
-        tvSpecialLoading.setVisibility(View.GONE);
+//
+//        //隐藏加载中
+//        ivSpecialAll.setVisibility(View.GONE);
+//        tvSpecialLoading.setVisibility(View.GONE);
     }
 
     @OnClick({R.id.topic_btn_top, R.id.topic_btn_next})

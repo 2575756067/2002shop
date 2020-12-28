@@ -9,6 +9,8 @@ import com.example.shopkuang.interfaces.IBaseView;
 
 public interface ILoginHome {
 
+    //todo  登录
+
     interface View extends IBaseView {
         void getLoginReturn(LoginBean result);
 

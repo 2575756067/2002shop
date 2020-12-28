@@ -9,6 +9,7 @@ import com.example.shopkuang.interfaces.IBaseView;
 
 public interface ITypeHome {
 
+    //分类
 
     interface View extends IBaseView {
 

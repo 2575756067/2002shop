@@ -30,7 +30,7 @@ import com.example.shopkuang.bean.bean.ChanneShujuBean;
 import com.example.shopkuang.bean.bean.HomeBean;
 import com.example.shopkuang.bean.bean.NewsBean;
 import com.example.shopkuang.bean.bean.NewsShujuBean;
-import com.example.shopkuang.bean.bean.TopicBean;
+import com.example.shopkuang.bean.bean.topic.TopicBean;
 import com.example.shopkuang.bean.bean.pinpai.BrandBean;
 import com.example.shopkuang.bean.bean.pinpai.BrandlistBean;
 import com.example.shopkuang.bean.bean.pinpai.BrandlistRecyBean;

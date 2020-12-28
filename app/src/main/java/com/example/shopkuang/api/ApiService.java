@@ -1,7 +1,7 @@
 package com.example.shopkuang.api;
 
 
-import com.example.shopkuang.bean.bean.TopicBean;
+import com.example.shopkuang.bean.bean.topic.TopicBean;
 import com.example.shopkuang.bean.bean.pinpai.BrandBean;
 import com.example.shopkuang.bean.bean.ChanneBean;
 import com.example.shopkuang.bean.bean.ChanneShujuBean;

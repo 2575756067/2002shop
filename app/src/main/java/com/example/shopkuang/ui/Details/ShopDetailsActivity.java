@@ -15,6 +15,7 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +31,8 @@ import com.example.shopkuang.base.BaseAdapter;
 import com.example.shopkuang.bean.bean.shop.ShoppingCarBean;
 import com.example.shopkuang.interfaces.home.IBuyhome;
 import com.example.shopkuang.presenter.IBuyPresenter;
+import com.example.shopkuang.ui.Details.favorites.Favorites;
+import com.example.shopkuang.ui.Details.favorites.Realms;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -42,6 +45,7 @@ import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
 public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implements IBuyhome.View {
 
@@ -80,6 +84,8 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
     ImageView iv_head_img;
     @BindView(R.id.iv_category_info_comment_img)
     ImageView iv_img;
+    @BindView(R.id.img_collect)
+    ImageView iv_favorites;
     private boolean isSelect = false;
 
     private String h5 = "<html>\n" +
@@ -103,6 +109,8 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
     private ArrayList<BuyDetailsBottomInfoBean.DataBean.GoodsListBean> goodsList;//底部列表集合
     private ArrayList<BuyDetailsBean.DataBeanX.IssueBean> issuelist;//常见问题集合
     private ArrayList<BuyDetailsBean.DataBeanX.AttributeBean> attributeList;//商品参数集合
+
+
     private BuyDetailsButtomInfoAdapter categoryButtomInfoAdapter;
     private BuyDetailsIssueAdapter categoryIssueAdapter;
     private BuyDetailsParameterAdapter categoryParameterAdapter;
@@ -128,25 +136,22 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
         initViewIssue();//常见问题布局
         initBottomInfo();//底部列表数据
         initViewParameter();//商品参数
-//        if (!TextUtils.isEmpty(SpUtils.getInstance().getString("token"))) {
-//
-//
-//        } else {
+
         //查看购物车
         iv_shopCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShopDetailsActivity.this, MainActivity.class);
-                intent.putExtra("pos", 3);
-                startActivity(intent);
+                intent.putExtra("poss", 3);
+//                startActivity(intent);
             }
         });
-//        }
 
         //广播
         intent = new Intent();
         intent.setAction("shu");
     }
+
 
     //TODO 商品参数布局
     private void initViewParameter() {
@@ -176,7 +181,7 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
     @Override
     protected void initData() {
         int categoryId = (int) MyApp.getMap().get("id1");
-        Log.e("TAG", "initData: "+categoryId );
+        Log.e("TAG", "initData: " + categoryId);
         presenter.getBuyDetailsData(categoryId);
         String s = String.valueOf(categoryId);
         presenter.getCategoryBottomInfo(s);
@@ -212,6 +217,7 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
                 BuyDetailsBean.DataBeanX.GalleryBean bean = (BuyDetailsBean.DataBeanX.GalleryBean) path;
+                //todo 加载图片前判断
                 Glide.with(context).load(bean.getImg_url()).into(imageView);
             }
         }).start();
@@ -229,7 +235,7 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
         categoryIssueAdapter.notifyDataSetChanged();
     }
 
-//    //TODO h5 商品详情数据
+    //TODO h5 商品详情数据
 //    private void initGoodDetail(String webData) {
 //        String content = h5.replace("word", webData);
 //        Log.i("TAG", content);
@@ -267,8 +273,6 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
         } else {
             isSelect = false;
         }
-        //添加购物车
-        //显示隐藏
         //        //添加购物车
         addCar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -349,6 +353,36 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
                 }
             }
         });
+
+        //收藏
+        initFavorites(info); //todo 收藏
+
+    }
+
+
+    private void initFavorites(BuyDetailsBean.DataBeanX.InfoBean info) {
+        //收藏到数据库
+        iv_favorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ShopDetailsActivity.this, "收藏成功！", Toast.LENGTH_SHORT).show();
+                //设置图片
+                iv_favorites.setImageResource(R.mipmap.shoucang);
+
+                Realms.getRealm(ShopDetailsActivity.this).executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        Favorites favorites = realm.createObject(Favorites.class);
+                        favorites.setName(info.getName());
+                        favorites.setPic(info.getList_pic_url());
+                        favorites.setPrice(info.getRetail_price());
+                        favorites.setTitle(info.getGoods_brief());
+
+                        Log.e("TAG", "execute: " + info.getName() + info.getList_pic_url());
+                    }
+                });
+            }
+        });
     }
 
     //TODO 购物车的点击
@@ -372,7 +406,7 @@ public class ShopDetailsActivity extends BaseActivity<IBuyhome.Presenter> implem
         }
     }
 
-
+    //todo  截取图片
     private void showImage(String goods_desc) {
         ArrayList<String> listUrl = new ArrayList<>();
         String img = "<img[\\s\\S]*?>";

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:src="@drawable/page3"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/jump"
+        android:text="立即体验"
+        android:textSize="@dimen/dp_24"
+        android:textColor="#fff"
+        android:padding="@dimen/dp_10"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_400"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="的"
+
+        android:layout_gravity="right"
+        android:textSize="@dimen/dp_20"/>
+</FrameLayout>

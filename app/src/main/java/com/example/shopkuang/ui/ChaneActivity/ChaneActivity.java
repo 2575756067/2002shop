@@ -8,7 +8,7 @@ import com.example.shopkuang.adapter.channe.ChanneTabAdapter;
 import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseActivity;
 import com.example.shopkuang.bean.bean.NewsShujuBean;
-import com.example.shopkuang.bean.bean.TopicBean;
+import com.example.shopkuang.bean.bean.topic.TopicBean;
 import com.example.shopkuang.bean.bean.pinpai.BrandBean;
 import com.example.shopkuang.bean.bean.ChanneBean;
 import com.example.shopkuang.bean.bean.ChanneShujuBean;
@@ -80,7 +80,6 @@ public class ChaneActivity extends BaseActivity<IHome.Presenter> implements IHom
         ChanneTabAdapter adapter = new ChanneTabAdapter(getSupportFragmentManager(), fragments, categoryList);
         vp.setAdapter(adapter);
         tab.setupWithViewPager(vp);
-        adapter.notifyDataSetChanged();
 
 
     }

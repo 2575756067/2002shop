@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'realm-android'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -87,5 +87,6 @@ dependencies {
     //垂直的tablayout
     implementation 'q.rorbin:VerticalTabLayout:1.2.5'
 
+    //侧滑删除菜单
     implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
 }

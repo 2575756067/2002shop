@@ -10,6 +10,7 @@ import com.example.shopkuang.ui.Details.BuyDetailsBottomInfoBean;
 
 public interface IBuyhome {
 
+    //todo 购买
     interface View extends IBaseView {
         void getBuyDetails(BuyDetailsBean buyDetailsBean);
 

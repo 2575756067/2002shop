@@ -1,4 +1,4 @@
-package com.example.shopkuang.bean.bean;
+package com.example.shopkuang.bean.bean.topic;
 
 import java.util.List;
 

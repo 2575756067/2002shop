@@ -1,7 +1,7 @@
 package com.example.shopkuang.interfaces.home;
 
 
-import com.example.shopkuang.bean.bean.TopicBean;
+import com.example.shopkuang.bean.bean.topic.TopicBean;
 import com.example.shopkuang.bean.bean.pinpai.BrandBean;
 import com.example.shopkuang.bean.bean.ChanneBean;
 import com.example.shopkuang.bean.bean.ChanneShujuBean;
@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 public interface IHome {
 
+    //todo 主页
     interface View extends IBaseView {
 
         void getHome(HomeBean homeBean);
