@@ -40,25 +40,20 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        ivMyDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, LoginActivity.class);
-                startActivityForResult(intent, 100);
-            }
-        });
-        ivMyHead.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, LoginActivity.class);
-                startActivityForResult(intent, 100);
-            }
-        });
+
         tvMyName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, LoginActivity.class);
                 startActivityForResult(intent, 100);
+            }
+        });
+
+        //todo  跳转到个人资料 详情
+        ivMyHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),MyDetailsActivity.class));
             }
         });
 

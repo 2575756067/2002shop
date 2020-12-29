@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopkuang.R;
+import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseAdapter;
 import com.example.shopkuang.base.BaseFragment;
 import com.example.shopkuang.interfaces.IBasePresenter;
@@ -365,6 +366,7 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
     private void JumpPayment() {
         //todo  跳转到下单页面
         Intent intent = new Intent(getActivity(), PayMentActivity.class);
+        MyApp.getMap().put("carlist",list);
         startActivity(intent);
     }
 

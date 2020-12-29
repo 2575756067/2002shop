@@ -286,7 +286,7 @@ public class HomeFragment extends BaseFragment<IHome.Presenter> implements IHome
         }
     }
 
-    //风格
+    //todo  动态栏
     private void initType(List<HomeBean.DataBean.ChannelBean> list) {
         layoutTab = getActivity().findViewById(R.id.layout_tab);
         layoutTab.removeAllViews();

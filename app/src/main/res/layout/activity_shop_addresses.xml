@@ -20,7 +20,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/dp_20"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_30"
+        android:layout_height="@dimen/dp_40"
         app:layout_constraintBottom_toBottomOf="parent"
 
         />

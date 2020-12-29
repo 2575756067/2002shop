@@ -48,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
     private CustomViewPager vp;
     private BottomNavigationView navView;
     private ArrayList<Fragment> fragments;
-    private PopupWindow window;
-    private TextView tv_dao;
-    private ViewPager mVp;
-    private Disposable disposable;
-    private boolean aBoolean = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +56,26 @@ public class MainActivity extends AppCompatActivity {
         navView = findViewById(R.id.nav_view);
         vp = findViewById(R.id.main_vp);
         vp.setScanScroll(false);
-
+        initFragment();
+        initwss();
     }
 
+
+
+    //fragment 集合
+    private void initFragment() {
+        fragments = new ArrayList<>();
+        HomeFragment homeFragment = new HomeFragment();
+        TopicFragment topicFragment = new TopicFragment();
+        SortFragment sortFragment = new SortFragment();
+        ShopFragment shopFragment = new ShopFragment();
+        MeFragment meFragment = new MeFragment();
+        fragments.add(homeFragment);
+        fragments.add(topicFragment);
+        fragments.add(sortFragment);
+        fragments.add(shopFragment);
+        fragments.add(meFragment);
+    }
     private void initwss() {
         MainVpAdapter adapter = new MainVpAdapter(getSupportFragmentManager(), fragments);
         vp.setAdapter(adapter);
@@ -116,100 +128,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //fragment 集合
-    private void initFragment() {
-        fragments = new ArrayList<>();
-        HomeFragment homeFragment = new HomeFragment();
-        TopicFragment topicFragment = new TopicFragment();
-        SortFragment sortFragment = new SortFragment();
-        ShopFragment shopFragment = new ShopFragment();
-        MeFragment meFragment = new MeFragment();
-        fragments.add(homeFragment);
-        fragments.add(topicFragment);
-        fragments.add(sortFragment);
-        fragments.add(shopFragment);
-        fragments.add(meFragment);
-    }
-
-    @Override
-    protected void onResume() {
-        int pos = getIntent().getIntExtra("poss", 0);
-        vp.setCurrentItem(pos);
-        super.onResume();
-    }
-
-    private void initPop() {
-        List<Integer> integerList = new ArrayList<>();
-        integerList.add(R.drawable.page1);
-        integerList.add(R.drawable.page2);
-        integerList.add(R.drawable.page3);
-
-        View view = View.inflate(this, R.layout.layout_pop, null);
-        window = new PopupWindow(view, -1, -1);
-        tv_dao = view.findViewById(R.id.tv_dao);
-        mVp = view.findViewById(R.id.mVp);
-        VpAdapter vpAdapter = new VpAdapter(this, integerList, window);
-        mVp.setAdapter(vpAdapter);
-        //倒计时
-        popupVpCli();
-        window.showAsDropDown(this.findViewById(R.id.main_vp));
-    }
-
-    private void popupVpCli() {
-        //页码的点击监听
-        mVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (position == 2) {//在最后一页执行倒计时
-                    tv_dao.setVisibility(View.VISIBLE);
-                    //TODO       Interval操作符(有范围)：创建一个按照固定时间发射整数序列的Observable
-                    disposable = Observable.intervalRange(0, 6, 0, 1, TimeUnit.SECONDS) //起始值，发送总数量，初始延迟，固定延迟
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Consumer<Long>() {
-                                @Override
-                                public void accept(Long aLong) throws Exception {
-                                    long time = 3 - aLong;
-                                    tv_dao.setText(time + "s");
-                                    if (time == 0) {
-                                        window.dismiss();
-                                    }
-                                }
-                            });
-                } else {
-                    tv_dao.setVisibility(View.GONE);
-                    cancelCallback();
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (aBoolean) {
-            initPop();
-            initFragment();
-            initwss();
-            aBoolean = false;
-        }
-
-    }
-
-    //取消订阅的方法
-    private void cancelCallback() {
-        if (disposable != null && !disposable.isDisposed()) {
-            disposable.dispose();
-        }
-    }
 }

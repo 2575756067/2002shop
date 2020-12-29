@@ -11,6 +11,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -55,7 +57,9 @@ dependencies {
     // 轮播图依赖
     implementation 'com.youth.banner:banner:1.4.10'
     // 图片加载依赖（新）
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    annotationProcessor  'com.github.bumptech.glide:compiler:4.9.0'
     //EventBus依赖
     implementation 'org.greenrobot:eventbus:3.1.1'
 
@@ -89,4 +93,14 @@ dependencies {
 
     //侧滑删除菜单
     implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
+
+    //oss a 阿里云
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.5.0'
+
+    //本地相机相册选择图片
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.3'
+
+    //dex
+    implementation 'com.android.support:multidex:1.0.3'
+
 }
