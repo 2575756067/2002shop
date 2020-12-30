@@ -88,6 +88,7 @@ public class MyDetailsActivity extends BaseActivity {
             }
         });
 
+        //获取图片资源
         String img = SpUtils.getInstance().getString("img");
         if (!TextUtils.isEmpty(img)) {
             Glide.with(this).load(img).apply(new RequestOptions().circleCrop()).into(imgAvatar);
