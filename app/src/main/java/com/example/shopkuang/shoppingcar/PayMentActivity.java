@@ -80,12 +80,12 @@ public class PayMentActivity extends BaseActivity {
         TextView gopay = findViewById(R.id.tv_gopay);    //todo  去付款
         List<CarBean.DataBean.CartListBean> carlist = (List<CarBean.DataBean.CartListBean>) MyApp.getMap().get("carlist");
 
-        String str = null;
+        int price = 0;
         for (int i = 0; i < carlist.size(); i++) {
-            str += ("" + Integer.valueOf(carlist.get(i).getRetail_price() * carlist.get(i).getNumber()));
+            price += (carlist.get(i).getRetail_price() * carlist.get(i).getNumber());
         }
-        getTvShopAll.setText("￥" + str);
-        allprice.setText(str);
+        getTvShopAll.setText("￥" + price);
+        allprice.setText(price+"");
         ImageView name_details = findViewById(R.id.tv_name_details);
 
 

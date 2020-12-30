@@ -101,7 +101,6 @@ public class SplaceActivity extends BaseActivity {
         img_3_select.setVisibility(View.GONE);
     }
 
-
     class MyViewPagerAdapter extends FragmentPagerAdapter {
 
         public MyViewPagerAdapter(@NonNull FragmentManager fm) {

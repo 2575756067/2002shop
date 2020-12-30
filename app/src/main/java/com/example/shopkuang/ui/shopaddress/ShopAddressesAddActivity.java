@@ -42,8 +42,7 @@ public class ShopAddressesAddActivity extends BaseActivity<IAddressHome.Presente
     EditText addressAddName;
     @BindView(R.id.address_add_phone)
     EditText addressAddPhone;
-    @BindView(R.id.address_add_sheng_qu_xian)
-    EditText addressAddShengQuXian;         //显示省份城市的数据
+
     @BindView(R.id.address_add_xiangxi)
     EditText addressAddXiangxi;
     @BindView(R.id.address_add_moren)
@@ -84,6 +83,7 @@ public class ShopAddressesAddActivity extends BaseActivity<IAddressHome.Presente
     private RecyclerView mRvList; // 显示数据的RecyclerView pw
     private ShopAddressesAddAdapter mAdapter;   // pw recyclerview 的 adapter
     private PopupWindow window;     //pw
+    private EditText addressAddShengQuXian;
 
     @Override
     protected int getLayout() {
@@ -97,7 +97,9 @@ public class ShopAddressesAddActivity extends BaseActivity<IAddressHome.Presente
 
     @Override
     protected void initView() {
-//        addressAddShengQuXian.setFocusable(false);//让EditText失去焦点，然后获取点击事件
+        //显示省份城市的数据
+        addressAddShengQuXian = findViewById(R.id.address_add_sheng_qu_xian);
+        addressAddShengQuXian.setFocusable(false);//让EditText失去焦点，然后获取点击事件
     }
 
     @Override
@@ -196,7 +198,6 @@ public class ShopAddressesAddActivity extends BaseActivity<IAddressHome.Presente
                 getWindow().setAttributes(attributes);
             }
         });
-
     }
 
     @Override
@@ -373,6 +374,7 @@ public class ShopAddressesAddActivity extends BaseActivity<IAddressHome.Presente
             });
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -72,6 +72,6 @@ public class SortFragment extends BaseFragment<ITypeHome.presenter> implements I
 
     @Override
     public void getTypeDataReturn(TypeDataBean result) {
-
+        
     }
 }

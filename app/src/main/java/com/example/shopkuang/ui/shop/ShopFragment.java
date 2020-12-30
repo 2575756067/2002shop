@@ -15,6 +15,7 @@ import com.example.shopkuang.R;
 import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseAdapter;
 import com.example.shopkuang.base.BaseFragment;
+import com.example.shopkuang.bean.bean.shop.ShoppingCarBean;
 import com.example.shopkuang.interfaces.IBasePresenter;
 import com.example.shopkuang.shoppingcar.CarListAdapter;
 import com.example.shopkuang.shoppingcar.ICarHome;
@@ -33,7 +34,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements ICarHome.View,View.OnClickListener {
+public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements ICarHome.View, View.OnClickListener {
 
     @BindView(R.id.checkbox_all)
     CheckBox checkBoxAll;
@@ -52,6 +53,7 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
 
     private CarListAdapter carListAdapter;
     private List<CarBean.DataBean.CartListBean> list;
+    private List<CarBean.DataBean.CartListBean> list1;
 
     @Override
     protected int getLayout() {
@@ -80,11 +82,11 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
         checkBoxAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("TAG","checkboxall:"+checkBoxAll.isChecked());
+                Log.i("TAG", "checkboxall:" + checkBoxAll.isChecked());
                 boolean bool = checkBoxAll.isChecked();
-                if(isEdit){
+                if (isEdit) {
                     updateGoodSelectStateEdit(bool);
-                }else{
+                } else {
                     updateGoodSelectStateOrder(bool);
                 }
             }
@@ -98,14 +100,14 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
     @Override
     protected void initData() {
         list = new ArrayList<>();
-        carListAdapter = new CarListAdapter(mContext,list);
+        list1 = new ArrayList<>();
+        carListAdapter = new CarListAdapter(mContext, list);
         recyGood.setLayoutManager(new LinearLayoutManager(mContext));
         recyGood.setAdapter(carListAdapter);
         String token = SpUtils.getInstance().getString("token");
-        if(!TextUtils.isEmpty(token)){
+        if (!TextUtils.isEmpty(token)) {
             presenter.getCarList();
-        }
-        else{
+        } else {
             gotoLogin();
         }
 
@@ -115,20 +117,20 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
         carListAdapter.addItemViewClick(new BaseAdapter.IItemViewClick() {
             @Override
             public void itemViewClick(int id, Object data) {
-                for(CarBean.DataBean.CartListBean item:list){
-                    if(item.getId() == id){
-                        if(!isEdit){
+                for (CarBean.DataBean.CartListBean item : list) {
+                    if (item.getId() == id) {
+                        if (!isEdit) {
                             item.selectOrder = (boolean) data;
-                        }else{
+                        } else {
                             item.selectEdit = (boolean) data;
                         }
                         break;
                     }
                 }
                 boolean isSelectAll;
-                if(!isEdit){
+                if (!isEdit) {
                     isSelectAll = totalSelectOrder();
-                }else{
+                } else {
                     isSelectAll = totalSelectEdit();
                 }
                 checkBoxAll.setChecked(isSelectAll);
@@ -139,11 +141,11 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
         carListAdapter.setUpdateItem(new CarListAdapter.UpdateItem() {
             @Override
             public void updateItemDate(CarBean.DataBean.CartListBean data) {
-                Map<String,String> map = new HashMap<>();
-                map.put("goodsId",String.valueOf(data.getGoods_id()));
-                map.put("productId",String.valueOf(data.getProduct_id()));
-                map.put("id",String.valueOf(data.getId()));
-                map.put("number",String.valueOf(data.getNumber()));
+                Map<String, String> map = new HashMap<>();
+                map.put("goodsId", String.valueOf(data.getGoods_id()));
+                map.put("productId", String.valueOf(data.getProduct_id()));
+                map.put("id", String.valueOf(data.getId()));
+                map.put("number", String.valueOf(data.getNumber()));
                 presenter.updateCar(map);
                 totalSelectEdit();
             }
@@ -173,15 +175,16 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
 
     /**
      * 更新接口之后的返回
+     *
      * @param result
      */
     @Override
     public void updateCarReturn(UpdateCarBean result) {
 
-        Log.i("TAG",result.toString());
+        Log.i("TAG", result.toString());
 
-        for(UpdateCarBean.DataBean.CartListBean item:result.getData().getCartList()){
-            updateCartListBeanNumberById(item.getId(),item.getNumber());
+        for (UpdateCarBean.DataBean.CartListBean item : result.getData().getCartList()) {
+            updateCartListBeanNumberById(item.getId(), item.getNumber());
         }
         //更新商品的总数和总价
         carBean.getData().getCartTotal().setGoodsCount(result.getData().getCartTotal().getGoodsCount());
@@ -192,12 +195,13 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
 
     /**
      * 刷新购物车列表的数据
+     *
      * @param carId
      * @param number
      */
-    private void updateCartListBeanNumberById(int carId,int number){
-        for(CarBean.DataBean.CartListBean item:list){
-            if(item.getId() == carId){
+    private void updateCartListBeanNumberById(int carId, int number) {
+        for (CarBean.DataBean.CartListBean item : list) {
+            if (item.getId() == carId) {
                 item.setNumber(number);
                 break;
             }
@@ -206,19 +210,20 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
 
     /**
      * 删除购物车列表返回
+     *
      * @param result
      */
     @Override
     public void deleteCarReturn(DeleteCarBean result) {
 
-        Log.i("TAG","deleteCar:"+result.toString());
+        Log.i("TAG", "deleteCar:" + result.toString());
         //通过购物车返回的最新数据，同步本地列表中的数据
-        int index,lg=list.size();
-        for(index=0;index<lg; index++){
+        int index, lg = list.size();
+        for (index = 0; index < lg; index++) {
             CarBean.DataBean.CartListBean item = list.get(index);
-            boolean bool = deleteCarListById(result.getData().getCartList(),item.getId());
-            Log.i("TAG","delete bool:"+bool +" item:"+item.getId());
-            if(bool){
+            boolean bool = deleteCarListById(result.getData().getCartList(), item.getId());
+            Log.i("TAG", "delete bool:" + bool + " item:" + item.getId());
+            if (bool) {
                 list.remove(index);
                 index--;
                 lg--;
@@ -231,13 +236,14 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
 
     /**
      * 判断当前的本地列表的购物车列表数据是否在返回的最新列表中存在
+     *
      * @param list
      * @param carId
      * @return
      */
-    private boolean deleteCarListById(List<DeleteCarBean.DataBean.CartListBean> list ,int carId){
-        for(DeleteCarBean.DataBean.CartListBean item:list){
-            if(item.getId() == carId){
+    private boolean deleteCarListById(List<DeleteCarBean.DataBean.CartListBean> list, int carId) {
+        for (DeleteCarBean.DataBean.CartListBean item : list) {
+            if (item.getId() == carId) {
                 return false;
             }
         }
@@ -246,10 +252,11 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
 
     /**
      * 下单状态的数据刷新
+     *
      * @param bool
      */
-    private void updateGoodSelectStateOrder(boolean bool){
-        for(CarBean.DataBean.CartListBean item:list){
+    private void updateGoodSelectStateOrder(boolean bool) {
+        for (CarBean.DataBean.CartListBean item : list) {
             item.selectOrder = bool;
         }
         totalSelectOrder();
@@ -259,10 +266,11 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
 
     /**
      * 编辑状态下的数据刷新
+     *
      * @param bool
      */
-    private void updateGoodSelectStateEdit(boolean bool){
-        for(CarBean.DataBean.CartListBean item:list){
+    private void updateGoodSelectStateEdit(boolean bool) {
+        for (CarBean.DataBean.CartListBean item : list) {
             item.selectEdit = bool;
         }
         totalSelectOrder();
@@ -270,56 +278,55 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
     }
 
 
-
     /**
      * 下单状态下的总数和价格的计算
      */
-    private boolean totalSelectOrder(){
+    private boolean totalSelectOrder() {
         int num = 0;
         int totalPrice = 0;
         boolean isSelectAll = true;
-        for(CarBean.DataBean.CartListBean item:list){
-            if(item.selectOrder){
+        for (CarBean.DataBean.CartListBean item : list) {
+            if (item.selectOrder) {
                 num += item.getNumber();
-                totalPrice += item.getNumber()*item.getRetail_price();
-            }else{
-                if(isSelectAll){
+                totalPrice += item.getNumber() * item.getRetail_price();
+            } else {
+                if (isSelectAll) {
                     isSelectAll = false;
                 }
             }
         }
         String strAll = "全选($)";
-        strAll = strAll.replace("$",String.valueOf(num));
+        strAll = strAll.replace("$", String.valueOf(num));
         checkBoxAll.setText(strAll);
-        txtTotalPrice.setText("￥"+totalPrice);
-        Log.i("TAG","num: "+num+"price："+totalPrice);
+        txtTotalPrice.setText("￥" + totalPrice);
+        Log.i("TAG", "num: " + num + "price：" + totalPrice);
         return isSelectAll;
     }
 
     /**
      * 编辑状态下的
      */
-    private boolean totalSelectEdit(){
+    private boolean totalSelectEdit() {
         int num = 0;
         boolean isSelectAll = true;
-        for(CarBean.DataBean.CartListBean item:list){
-            if(item.selectEdit){
+        for (CarBean.DataBean.CartListBean item : list) {
+            if (item.selectEdit) {
                 num += item.getNumber();
-            }else{
-                if(isSelectAll){
+            } else {
+                if (isSelectAll) {
                     isSelectAll = false;
                 }
             }
         }
         String strAll = "全选($)";
-        strAll = strAll.replace("$",String.valueOf(num));
+        strAll = strAll.replace("$", String.valueOf(num));
         checkBoxAll.setText(strAll);
         return isSelectAll;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.txt_edit:
                 changeEdit();
                 break;
@@ -333,13 +340,13 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
     /**
      * 修改编辑和完成的状态
      */
-    private void changeEdit(){
-        if("编辑".equals(txtEdit.getText().toString())){
+    private void changeEdit() {
+        if ("编辑".equals(txtEdit.getText().toString())) {
             txtEdit.setText("完成");
             txtSubmit.setText("删除所选");
             isEdit = true;
             txtTotalPrice.setVisibility(View.GONE);
-        }else if("完成".equals(txtEdit.getText().toString())){
+        } else if ("完成".equals(txtEdit.getText().toString())) {
             txtEdit.setText("编辑");
             txtSubmit.setText("下单");
             isEdit = false;
@@ -353,11 +360,19 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
     /**
      * 提交
      */
-    private void submit(){
-        if("下单".equals(txtSubmit.getText().toString())){
+
+
+    private void submit() {
+        list1.clear();
+        if ("下单".equals(txtSubmit.getText().toString())) {
             //todo  跳转到下单页面
+            for (CarBean.DataBean.CartListBean item : list) {
+                if (item.selectOrder) {//在下单的状态勾选
+                    list1.add(item);
+                }
+            }
             JumpPayment();
-        }else if("删除所选".equals(txtSubmit.getText().toString())){
+        } else if ("删除所选".equals(txtSubmit.getText().toString())) {
             //删除购物车所选数据
             deleteCar();
         }
@@ -366,25 +381,25 @@ public class ShopFragment extends BaseFragment<ICarHome.Presenter> implements IC
     private void JumpPayment() {
         //todo  跳转到下单页面
         Intent intent = new Intent(getActivity(), PayMentActivity.class);
-        MyApp.getMap().put("carlist",list);
+        MyApp.getMap().put("carlist", list1);
         startActivity(intent);
     }
 
     /**
-     *删除所有选中的商品数据
+     * 删除所有选中的商品数据
      */
-    private void deleteCar(){
+    private void deleteCar() {
         StringBuilder sb = new StringBuilder();
-        for(CarBean.DataBean.CartListBean item:list){
-            if(item.selectEdit){
+        for (CarBean.DataBean.CartListBean item : list) {
+            if (item.selectEdit) {
                 sb.append(item.getProduct_id());
                 sb.append(",");
             }
         }
-        if(sb.length() > 0){
-            sb.deleteCharAt(sb.length()-1);
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
         }
-        Log.i("TAG",sb.toString());
+        Log.i("TAG", sb.toString());
         presenter.deleteCar(sb.toString());
     }
 

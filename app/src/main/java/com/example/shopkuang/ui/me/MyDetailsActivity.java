@@ -58,6 +58,7 @@ public class MyDetailsActivity extends BaseActivity {
     private TextView txtUsername;
     private TextView txtNickname;
     private TextView loginout;
+    private TextView txtsign;
     private ImageView imgAvatar;
 
     @Override
@@ -78,6 +79,7 @@ public class MyDetailsActivity extends BaseActivity {
         imgAvatar = findViewById(R.id.img_avatar);
         txtUsername = findViewById(R.id.txt_username);
         txtNickname = findViewById(R.id.txt_nickname);
+        txtsign = findViewById(R.id.txt_sign);
         loginout = findViewById(R.id.btn_loginout);
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
