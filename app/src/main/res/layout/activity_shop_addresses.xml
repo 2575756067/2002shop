@@ -7,7 +7,7 @@
     tools:context=".ui.shopaddress.ShopAddressesActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/address_rlv"
+        android:id="@+id/address_recycle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/address_btn_add"
         android:layout_width="match_parent"

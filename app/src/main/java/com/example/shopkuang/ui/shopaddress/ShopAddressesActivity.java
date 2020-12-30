@@ -19,6 +19,7 @@ import com.example.shopkuang.bean.bean.address.AddressAddProvinceBean;
 import com.example.shopkuang.bean.bean.address.AddressBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +30,7 @@ public class ShopAddressesActivity extends BaseActivity<IAddressHome.Presenter> 
 
     @BindView(R.id.address_btn_add)
     Button addressBtnAdd;
-    private ArrayList<AddressBean.DataBean> list;
+    private List<ShopAddressBean> list;
 
     @Override
     protected int getLayout() {
@@ -44,11 +45,23 @@ public class ShopAddressesActivity extends BaseActivity<IAddressHome.Presenter> 
 
     @Override
     protected void initView() {
-        RecyclerView addressRlv = findViewById(R.id.address_rlv);
-        addressRlv.setLayoutManager(new LinearLayoutManager(this));
-        addressRlv.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+        RecyclerView addressrecycle = findViewById(R.id.address_recycle);
+        addressrecycle.setLayoutManager(new LinearLayoutManager(this));
+        addressrecycle.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        String phone = intent.getStringExtra("phone");
+        String address = intent.getStringExtra("address");
+        String detailsAddress = intent.getStringExtra("detailsAddress");
 
+        String addressDetails = address + detailsAddress;
         list = new ArrayList<>();
+        list.add(new ShopAddressBean(name, phone, addressDetails));
+
+
+        ShopAddressAdapter adapter = new ShopAddressAdapter(this, list);
+        addressrecycle.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -65,7 +78,7 @@ public class ShopAddressesActivity extends BaseActivity<IAddressHome.Presenter> 
 
     @Override
     public void getAddressData(AddressBean result) {
-        if (result.getData().size()>0) {
+        if (result.getData().size() > 0) {
             Log.e("TAG", "getAddressReturn: " + result.getData().get(0).getName());
         }
     }

@@ -1,6 +1,7 @@
 package com.example.shopkuang.ui.shopaddress;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -117,11 +118,29 @@ public class ShopAddressesAddActivity extends BaseActivity<IAddressHome.Presente
                 finish();
                 break;
             case R.id.address_add_btn_ok:
+                //todo  保存地址
+                SaveAddress();
                 break;
             case R.id.address_add_sheng_qu_xian:
                 initPw();
                 break;
         }
+    }
+
+    //todo  保存地址
+    private void SaveAddress() {
+        String name = addressAddName.getText().toString();  //todo  姓名
+        String phone = addressAddPhone.getText().toString();//todo  手机号
+        String address = addressAddShengQuXian.getText().toString();  //todo  省区县
+        String detailsAddress = addressAddXiangxi.getText().toString(); //todo 详细地址
+
+        //todo  跳转到地址页面
+        Intent intent = new Intent(this,ShopAddressesActivity.class);
+        intent.putExtra("name",name);
+        intent.putExtra("phone",phone);
+        intent.putExtra("address",address);
+        intent.putExtra("detailsAddress",detailsAddress);
+        startActivity(intent);
     }
 
     private void initPw() {
