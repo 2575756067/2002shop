@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.shopkuang.R;
 import com.example.shopkuang.base.BaseActivity;
 import com.example.shopkuang.bean.bean.login.LoginBean;
+import com.example.shopkuang.bean.bean.login.LoginUserInfoBean;
 import com.example.shopkuang.bean.bean.login.RegisterBean;
 import com.example.shopkuang.interfaces.home.ILoginHome;
 import com.example.shopkuang.presenter.LoginPresenter;
@@ -130,6 +131,16 @@ public class RegisterActivity extends BaseActivity<ILoginHome.Presenter> impleme
 //            finish();
 //
 //        }
+    }
+
+    @Override
+    public void getLoginoutReturn(LoginoutBean result) {
+
+    }
+
+    @Override
+    public void LoginUserInfoReturn(LoginUserInfoBean result) {
+
     }
 
     @Override

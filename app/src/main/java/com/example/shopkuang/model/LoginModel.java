@@ -7,7 +7,10 @@ import com.example.shopkuang.interfaces.Callback;
 import com.example.shopkuang.interfaces.home.ILoginHome;
 import com.example.shopkuang.net.CommonSubscriber;
 import com.example.shopkuang.net.HttpManager;
+import com.example.shopkuang.ui.login.LoginoutBean;
 import com.example.shopkuang.utils.RxUtils;
+
+import java.util.Map;
 
 public class LoginModel extends BaseModel implements ILoginHome.Model {
     @Override
@@ -38,6 +41,26 @@ public class LoginModel extends BaseModel implements ILoginHome.Model {
                         callback.success(registerBean);
                     }
                 }));
+    }
+
+    @Override
+    public void getLoginoutCallback(Callback callback) {
+        addDisposiable(HttpManager
+        .getInstance()
+        .getLoginApi()
+        .loginout()
+        .compose(RxUtils.rxScheduler())
+        .subscribeWith(new CommonSubscriber<LoginoutBean>(callback) {
+            @Override
+            public void onNext(LoginoutBean loginoutBean) {
+                callback.success(loginoutBean);
+            }
+        }));
+    }
+
+    @Override
+    public void PostLoginUserInfoCallback(Map<String, String> map, Callback callback) {
+
     }
 
 }

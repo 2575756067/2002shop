@@ -7,6 +7,9 @@ import com.example.shopkuang.bean.bean.login.RegisterBean;
 import com.example.shopkuang.interfaces.Callback;
 import com.example.shopkuang.interfaces.home.ILoginHome;
 import com.example.shopkuang.model.LoginModel;
+import com.example.shopkuang.ui.login.LoginoutBean;
+
+import java.util.Map;
 
 public class LoginPresenter extends BasePresenter<ILoginHome.View> implements ILoginHome.Presenter {
 
@@ -36,5 +39,20 @@ public class LoginPresenter extends BasePresenter<ILoginHome.View> implements IL
                 mView.getRegisterReturn((RegisterBean) o);
             }
         });
+    }
+
+    @Override
+    public void getLoginOut() {
+        model.getLoginoutCallback(new Callback() {
+            @Override
+            public void success(Object o) {
+                mView.getLoginoutReturn((LoginoutBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void PostLoginUserInfo(Map<String, String> map) {
+
     }
 }

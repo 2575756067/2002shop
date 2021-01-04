@@ -2,6 +2,7 @@ package com.example.shopkuang.ui.me;
 
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,10 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.shopkuang.R;
+import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseFragment;
 import com.example.shopkuang.interfaces.IBasePresenter;
 import com.example.shopkuang.ui.Details.favorites.FavoritesActivity;
 import com.example.shopkuang.ui.login.LoginActivity;
+import com.example.shopkuang.utils.SpUtils;
 
 import butterknife.BindView;
 
@@ -22,6 +25,8 @@ public class MeFragment extends BaseFragment {
     ImageView ivMyHead;
     @BindView(R.id.tv_my_name)
     TextView tvMyName;
+    @BindView(R.id.tv_my_sign)
+    TextView tvsign;
     @BindView(R.id.iv_my_details)
     ImageView ivMyDetails;
     @BindView(R.id.ll_my_shoucang)
@@ -40,20 +45,29 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-
-        tvMyName.setOnClickListener(new View.OnClickListener() {
+        //todo 跳转到登录页面
+        ivMyDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, LoginActivity.class);
-                startActivityForResult(intent, 100);
+                if(!TextUtils.isEmpty(SpUtils.getInstance().getString("token"))){
+                    //点击个人资料把名字传过去
+                    String name = tvMyName.getText().toString();
+                    MyApp.getMap().put("name",name);
+                    startActivity(new Intent(getActivity(), MyDetailsActivity.class));
+                }else {
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    startActivityForResult(intent, 100);
+                }
             }
         });
-
         //todo  跳转到个人资料 详情
         ivMyHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),MyDetailsActivity.class));
+                //点击个人资料把名字传过去
+                String name = tvMyName.getText().toString();
+                MyApp.getMap().put("name",name);
+                startActivity(new Intent(getActivity(), MyDetailsActivity.class));
             }
         });
 
@@ -68,7 +82,7 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        
     }
 
     @Override

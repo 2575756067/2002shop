@@ -1,6 +1,9 @@
 package com.example.shopkuang.ui.me;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -8,7 +11,9 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,8 +35,15 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.shopkuang.R;
 import com.example.shopkuang.app.Constants;
+import com.example.shopkuang.app.MyApp;
 import com.example.shopkuang.base.BaseActivity;
+import com.example.shopkuang.bean.bean.login.LoginBean;
+import com.example.shopkuang.bean.bean.login.LoginUserInfoBean;
+import com.example.shopkuang.bean.bean.login.RegisterBean;
 import com.example.shopkuang.interfaces.IBasePresenter;
+import com.example.shopkuang.interfaces.home.ILoginHome;
+import com.example.shopkuang.presenter.LoginPresenter;
+import com.example.shopkuang.ui.login.LoginoutBean;
 import com.example.shopkuang.utils.BitmapUtils;
 import com.example.shopkuang.utils.GlideEngine;
 import com.example.shopkuang.utils.SpUtils;
@@ -45,7 +57,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MyDetailsActivity extends BaseActivity {
+public class MyDetailsActivity extends BaseActivity<ILoginHome.Presenter> implements ILoginHome.View {
 
 
     String bucketName = "2002aa";
@@ -57,7 +69,7 @@ public class MyDetailsActivity extends BaseActivity {
     private OSS ossClient;
     private TextView txtUsername;
     private TextView txtNickname;
-    private TextView loginout;
+    private Button loginout;
     private TextView txtsign;
     private ImageView imgAvatar;
 
@@ -67,8 +79,8 @@ public class MyDetailsActivity extends BaseActivity {
     }
 
     @Override
-    protected IBasePresenter createPrenter() {
-        return null;
+    protected ILoginHome.Presenter createPrenter() {
+        return new LoginPresenter(this);
     }
 
 
@@ -81,6 +93,27 @@ public class MyDetailsActivity extends BaseActivity {
         txtNickname = findViewById(R.id.txt_nickname);
         txtsign = findViewById(R.id.txt_sign);
         loginout = findViewById(R.id.btn_loginout);
+
+        String name = (String) MyApp.getMap().get("name");
+
+        txtUsername.setText(name);
+        //todo  名字
+        txtUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserDialog();
+            }
+        });
+
+        //todo  个性签名
+        txtsign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SignDialog();
+            }
+        });
+
+        //todo   打开相册切换头像
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,11 +121,54 @@ public class MyDetailsActivity extends BaseActivity {
             }
         });
 
+
         //获取图片资源
         String img = SpUtils.getInstance().getString("img");
         if (!TextUtils.isEmpty(img)) {
             Glide.with(this).load(img).apply(new RequestOptions().circleCrop()).into(imgAvatar);
         }
+
+        loginout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo  退出登录
+                presenter.getLoginOut();
+            }
+        });
+    }
+
+
+    //todo  名字弹窗
+    private void UserDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.user_dialog_layout, null);
+        new AlertDialog.Builder(this)
+                .setView(view)
+                .setNegativeButton("取消", null)
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TextView et_username = view.findViewById(R.id.et_username);
+                        String username = et_username.getText().toString();
+                        txtUsername.setText(username);
+                    }
+                }).show();
+
+    }
+
+    //todo  个性签名弹窗
+    private void SignDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.sign_dialog_layout, null);
+        new AlertDialog.Builder(this)
+                .setView(view)
+                .setNegativeButton("取消", null)
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TextView et_sign = view.findViewById(R.id.et_sign);
+                        String sign = et_sign.getText().toString();
+                        txtsign.setText(sign);
+                    }
+                }).show();
     }
 
     //初始化OSS
@@ -150,7 +226,6 @@ public class MyDetailsActivity extends BaseActivity {
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + requestCode);
-
         }
     }
 
@@ -167,6 +242,7 @@ public class MyDetailsActivity extends BaseActivity {
             if (cursor != null) {
                 cursor.close();
             }
+
         }
     }
 
@@ -231,5 +307,27 @@ public class MyDetailsActivity extends BaseActivity {
                 Glide.with(imgAvatar).load(url).apply(new RequestOptions().circleCrop()).into(imgAvatar);
             }
         });
+    }
+
+    @Override
+    public void getLoginReturn(LoginBean result) {
+
+    }
+
+    @Override
+    public void getRegisterReturn(RegisterBean result) {
+
+    }
+
+    @Override
+    public void getLoginoutReturn(LoginoutBean result) {
+        //todo 清空 token
+        SpUtils.getInstance().remove_token();
+        finish();
+    }
+
+    @Override
+    public void LoginUserInfoReturn(LoginUserInfoBean result) {
+
     }
 }
