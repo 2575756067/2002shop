@@ -42,6 +42,7 @@
         <activity android:name=".ui.shopaddress.ShopAddressesAddActivity" />
         <activity android:name=".ui.Details.favorites.FavoritesActivity" />
         <activity android:name=".ui.me.MyDetailsActivity"/>
+        <activity android:name="com.live.ui.RoomActivity"/>
     </application>
 
 </manifest>

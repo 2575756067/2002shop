@@ -10,6 +10,7 @@ import com.example.shopkuang.api.LoginApi;
 import com.example.shopkuang.api.PInpaiApi;
 import com.example.shopkuang.api.TopicApi;
 import com.example.shopkuang.api.TypeApi;
+import com.example.shopkuang.bean.bean.live.interfaces.home.ApiLive;
 import com.example.shopkuang.shoppingcar.ICarApi;
 import com.example.shopkuang.utils.SpUtils;
 
@@ -101,6 +102,14 @@ public class HttpManager {
     private ICarApi iCarApi;
     private AddressApi addressApi;
     private TopicApi topicApi;
+    private ApiLive apiLive;
+
+    public ApiLive getApiLive() {
+        if (apiLive == null) {
+            apiLive = getRetrofit(ApiLive.BASE_URL).create(ApiLive.class);
+        }
+        return apiLive;
+    }
 
     public TopicApi getTopicApi() {
         if (topicApi == null) {

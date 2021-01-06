@@ -41,6 +41,8 @@ import com.example.shopkuang.ui.Details.ShopDetailsActivity;
 import com.example.shopkuang.ui.brand.BrandShopActivity;
 import com.example.shopkuang.ui.pinpai.BrandActivity;
 import com.example.shopkuang.utils.TxtUtils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.live.ui.RoomActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -69,6 +71,7 @@ public class HomeFragment extends BaseFragment<IHome.Presenter> implements IHome
     private TextView newname;
     private List<BrandBean.DataBeanX.DataBean> data;
     private NewsBean.DataBean.BannerInfoBean bannerInfo;
+    private FloatingActionButton btnlive;
 
     @Override
     protected int getLayout() {
@@ -87,6 +90,17 @@ public class HomeFragment extends BaseFragment<IHome.Presenter> implements IHome
         initNewGoods(); //新品
         initHotGoods(); //人气推荐
         initTopic();    //专题精选
+
+
+        btnlive = getActivity().findViewById(R.id.btn_live);
+
+        //todo  跳转到直播
+        btnlive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), RoomActivity.class));
+            }
+        });
     }
 
     //banner
